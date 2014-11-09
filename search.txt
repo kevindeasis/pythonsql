@@ -1,0 +1,118 @@
+import cx_Oracle
+import sys
+import common
+from common import print_sql_result
+from common import format_date
+
+
+
+list violation records
+
+--drive license_no
+-- sin entered
+
+
+def print_opts():
+    print('Enter Licence number or SIN')
+    print('	 Or type \'exit\' to go back.')
+
+def search(conn,line):
+
+	while True:
+	    if common.exists(conn, 'people', 'sin', line):
+    		x = 1
+    		break
+  	 	if common.exists(conn, 'drive_licence', 'licence_no', line):
+    		x = 2
+    		break
+    	return "No";
+    if x == 1:
+    	#look for tickets using sin
+    	#select t.ticket_no, t.violator_no, vehicle_id, office_no, vtype, vdate, place, descriptions
+    	#from ticket t, people p
+    	string = "select t.ticket_no, t.violator from people p, ticket t, where p.sin = t.violator_no and p.sin = " + str(line)
+    	
+    	try:
+        	curs = conn.cursor()
+			curs.execute(string)
+			rows = curs.fetchall()
+			for row in rows;
+				print(row)
+        	curs.close()
+        	conn.commit()
+        	return True
+    if x == 2:
+		string2= "select p.sin from people p, drive_licence d where p.sin = d.sin and d.licence = " str(line)
+    	try:
+        	curs = conn.cursor()
+			curs.execute(string2)
+			rows = curs.fetchall()
+			for row in rows;
+				print(row)
+        	curs.close()
+        	conn.commit()
+        	return True
+
+#select t.ticket_no, t.violator_no from people p, ticket t where p.sin = t.violator_no and p.sin = '111111111111118';
+
+#select t.ticket_no from people p, drive_licence d, ticket t, where p.sin = d.sin, p.sin
+
+#select p.sin from people p, drive_licence d where p.sin = d.sin and d.licence = 3;
+
+ #   	CREATE TABLE ticket (
+ # ticket_no     int,
+ # violator_no   CHAR(15),  
+ # vehicle_id    CHAR(15),
+ # office_no     CHAR(15),
+ # vtype        char(10),
+ # vdate        date,
+ # place        varchar(20),
+ # descriptions varchar(1024),
+    else:
+    	return None
+
+
+
+select  t.ticket_no, t.violator_no, t.vehicle_id, t.office_no, t.vtype, t.vdate, t.place, t.descriptions from people p, drive_licence d, ticket t where t.violator_no = p.sin and p.sin = d.sin and d.licence_no = 123;
+select  t.ticket_no, t.violator_no, t.vehicle_id, t.office_no, t.vtype, t.vdate, t.place, t.descriptions from people p, ticket t where t.violator_no = p.sin and p.sin = 111111111111118
+
+
+  ticket_no     int,
+  violator_no   CHAR(15),  
+  vehicle_id    CHAR(15),
+  office_no     CHAR(15),
+  vtype        char(10),
+  vdate        date,
+  place        varchar(20),
+  descriptions varchar(1024),
+
+def search_engine(conn):
+
+	while True:
+	    common.clear()
+		print_opts()
+	
+		line = sys.stdin.readline()
+    		if not line:
+            	return
+        line = line.rstrip()
+        if line == 'exit':
+            return
+	
+        common.clear()
+        
+        
+        try:
+            r = None
+            r = search(conn,line)
+            
+            if r == "No":
+            	print("The licence number or SIN does not exist")
+            if r == None:
+                print('Operation cancelled.')
+            elif r == True:
+                print('Operation succeeded.')
+            elif r == False:
+                print('Operation failed.')        
+        
+ 

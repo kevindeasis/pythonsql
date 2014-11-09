@@ -1,0 +1,163 @@
+
+/*
+*lives in edmonton 3 people
+*/
+
+insert into people values(111111111111112, 'Ray Muzyka', 178, 141.2, 'brown', 'brown', 'Edmonton', 'm', date '1985-01-31');
+insert into people values(111111111111113, 'Gregory Zeschuk', 178, 141.2, 'brown', 'brown', 'Edmonton', 'm', date '1985-03-17');
+insert into people values(111111111111114, 'Augustine Yip', 178, 141.2, 'brown', 'brown', 'Edmonton', 'm', date '1985-04-21');
+
+
+
+/*
+*does not live in edmonton 1
+*/
+
+insert into people values(111111111111111, 'Dang Nguyen', 174.8, 141.2, 'brown', 'brown', 'Vietnam', 'm', date '1985-01-31');
+
+
+/*
+* primary owner of at least three suvs
+*/
+
+insert into people values(111111111111115, 'Sam Altman', 177.8, 141.2, 'brown', 'brown', 'Vietnam', 'm', date '1988-09-27');
+insert into vehicle_type values(1,'SUV');
+insert into vehicle values('abc123', 'Ford', 'SUV', 2010, 'red', 1 );
+insert into owner values('111111111111115', 'abc123','y');
+
+insert into vehicle_type values(2,'SUV');
+insert into vehicle values('abc124', 'Ford', 'SUV', 2011, 'blue', 2 );
+insert into owner values('111111111111115', 'abc124','y');
+
+insert into vehicle_type values(3,'SUV');
+insert into vehicle values('abc125', 'Ford', 'SUV', 2013, 'yellow', 3 );
+insert into owner values('111111111111115', 'abc125','y');
+
+
+/*
+* name and address of people who do not own a red vehicle
+*/
+
+
+
+insert into people values(111111111111116, 'Ron Conway', 179.8, 221.2, 'brown', 'brown', 'Los Angeles', 'm', date '1976-12-25');
+insert into vehicle_type values(4,'SUV');
+insert into vehicle values('abc126', 'Ford', 'SUV', 2014, 'white', 4 );
+insert into owner values('111111111111116', 'abc126','y');
+
+/*
+* this is the police
+*/
+insert into people values(111111111111117, 'Ronnie Coleman', 178.8, 251.2, 'brown', 'brown', 'Los Angeles', 'm', date '1984-05-14');
+
+
+/*
+* ticket fine create average 5 people
+*/
+insert into people values(111111111111118, 'Mark Zuckerberg', 174.8, 151.2, 'brown', 'brown', 'Silicon Valley', 'm', date '1984-05-14');
+insert into ticket_type values('DUI', 250.50);
+insert into vehicle_type values(5,'Sedan');
+insert into vehicle values('abc127', 'Nissan', 'Sedan', 2013, 'grey', 5);
+insert into ticket values(1,111111111111118, 'abc127', '111111111111117', 'DUI', date '2014-02-12', 'Anthony Henday', 'Drunk Driving');
+
+insert into ticket values(69,111111111111115, 'abc123', '111111111111117', 'DUI', date '2014-02-12', 'Anthony Henday', 'Drunk Driving');
+insert into owner values('111111111111116', 'abc123','n');
+
+
+
+insert into people values(111111111111119, 'Jack Dorsey', 177.8, 171.2, 'brown', 'brown', 'Silicon Valley', 'm', date '1976-11-19');
+insert into ticket_type values('DUI1', 250.50);
+insert into vehicle_type values(6,'Sedan');
+insert into vehicle values('abc128', 'Nissan', 'Sedan', 2014, 'grey', 6);
+insert into ticket values(2,111111111111119, 'abc128', '111111111111117', 'DUI1', date '2014-02-12', 'Anthony Henday', 'Reckless Driving');
+
+
+insert into people values(111111111111120, 'Dianne Greene', 172.8, 121.2, 'brown', 'brown', 'Silicon Valley', 'm', date '1956-11-19');
+insert into ticket_type values('DUI2', 250.50);
+insert into vehicle_type values(7,'SUV');
+insert into vehicle values('abc129', 'Nissan', 'SUV', 2014, 'pink', 7);
+insert into ticket values(3,111111111111120, 'abc129', '111111111111117', 'DUI2', date '2014-02-12', 'Anthony Henday', 'Parking');
+
+/*
+* ticket fine larger than average 1 people
+*/
+
+
+insert into people values(111111111111121, 'Dan Siroker', 172.8, 121.2, 'brown', 'brown', 'Silicon Valley', 'm', date '1986-11-19');
+insert into ticket_type values('DUI3', 999.50);
+insert into vehicle_type values(8,'Coupe');
+insert into vehicle values('abc130', 'Ferrari', 'Coupe', 2014, 'black', 8);
+insert into ticket values(4,111111111111121, 'abc129', '111111111111117', 'DUI2', date '2014-02-12', 'Anthony Henday', 'DUI with tinted windows');
+
+/*
+*  Selling cars so that there is a price (guy that sells 111111111111112 muzyka), 2010 -2003
+*/
+
+insert into people values(111111111111122, 'Ben Silberman', 178, 141.2, 'brown', 'brown', 'Massachussets', 'm', date '1982-01-31');
+insert into vehicle_type values(9, 'Coupe');
+insert into vehicle values('abc131', 'Lamborghini', 'Coupe', 2014, 'orange', 9);
+insert into auto_sale values(1, '111111111111112', '111111111111122', 'abc131', date '2013-12-25', 250000 );
+
+insert into auto_sale values(2, '111111111111112', '111111111111121', 'abc130', date '2013-12-25', 250000 );
+
+insert into auto_sale values(3, '111111111111112', '111111111111120', 'abc129', date '2010-12-25', 45000 );
+
+insert into auto_sale values(4, '111111111111112', '111111111111119', 'abc128', date '2014-02-2', 10000 );
+
+/*
+* car that has been sold with the most ticket
+*/
+
+insert into auto_sale values(5, '111111111111112', '111111111111118', 'abc127', date '2014-01-2', 30000 );
+
+/* parent key
+*insert into auto_sale values(6, '111111111111112', '111111111111118', 'abc132', date '1994-01-2', 14000 );
+*/ insert into people values(111111111111118, 'Mark Zuckerberg', 174.8, 151.2, 'brown', 'brown', 'Silicon Valley', 'm', date '1984-05-14');
+insert into ticket_type values('DUI4', 250.50);
+insert into vehicle_type values(10,'Bus');
+insert into vehicle values('abc132', 'Mazda', 'Bus', 1994, 'yellow', 10);
+insert into ticket values(7,111111111111118, 'abc132', '111111111111117', 'DUI4', date '2014-01-01', 'Anthony Henday', 'Reckless Driving');
+insert into auto_sale values(7, '111111111111112', '111111111111118', 'abc132', date '1994-01-2', 14000 );
+
+
+insert into ticket_type values('DUI5', 250.50);
+insert into ticket values(8,111111111111118, 'abc132', '111111111111117', 'DUI5', date '2013-12-31', 'Anthony Henday', 'Driving Under the Influence');
+
+insert into ticket_type values('DUI6', 250.50);
+insert into ticket values(9,111111111111118, 'abc132', '111111111111117', 'DUI5', date '2010-12-31', 'Anthony Henday', 'Driving Under the Influence');
+
+insert into drive_licence values(123, 111111111111118, 'drivers', null, date '2001-12-12', date '2017-12-12');
+
+
+/* ronnie coleman car is red
+*
+*/
+
+insert into vehicle_type values(11,'SUV');
+insert into vehicle values('abd111', 'Ford', 'SUV', 2013, 'red', 11 );
+insert into owner values('111111111111117', 'abd111','y');
+insert into drive_licence values(999999, 111111111111117, 'drivers', null, date '2001-12-12', date '2017-12-12')
+update drive_license
+
+
+insert into people values(111111111111199, 'James Franco', 178.8, 251.2, 'brown', 'brown', 'Los Angeles', 'm', date '1984-05-14');
+insert into vehicle_type values(19,'SUV');
+insert into vehicle values('abd112', 'Ford', 'SUV', 2013, 'red', 19 );
+insert into owner values('111111111111199', 'abd112','y');
+insert into drive_licence values(9999991, 111111111111199, 'drivers', null, date '2001-12-12', date '2017-12-12');
+
+
+
+
+/* non red
+*
+*/
+
+
+insert into people values(211111111111199, 'Seth Rogan', 178.8, 251.2, 'brown', 'brown', 'Los Angeles', 'm', date '1984-05-14');
+insert into vehicle_type values(99,'SUV');
+insert into vehicle values('bbd112', 'Ford', 'SUV', 2013, 'lime', 99 );
+insert into owner values('211111111111199', 'abd112','y');
+insert into drive_licence values(9999992, 211111111111199, 'drivers', null, date '2001-12-12', date '2017-12-12');
+
+
